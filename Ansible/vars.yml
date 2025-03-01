@@ -1,0 +1,16 @@
+aws_region: ap-south-1
+ec2_instance_type: t2.micro
+ec2_ami_id: ami-0aac1014bc0a90e1a  # Ubuntu 20.04 LTS (update if needed)
+vpc_id: vpc-08c35951c010e0f01  # Replace with your VPC ID
+
+db_instance_identifier: my-app-db
+  #db_engine_version: 5.6.42
+db_instance_class: db.t3.micro
+db_engine: mysql
+db_name: myappdb
+db_username: mydbuser
+db_password: SuperSecurePass123!
+
+web_sg_name: web-sg
+db_sg_name: db-sg
+

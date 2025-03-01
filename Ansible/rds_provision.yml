@@ -1,0 +1,39 @@
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Create DB Security Group
+      amazon.aws.ec2_security_group:
+        name: "{{ db_sg_name }}"
+        description: "Security group for RDS"
+        region: "{{ aws_region }}"
+        vpc_id: "{{ vpc_id }}"
+        rules:
+          - proto: tcp
+            ports:
+              - 3306
+            group_name: "{{ web_sg_name }}"
+      register: db_sg
+
+    - name: Create RDS MySQL instance
+      amazon.aws.rds_instance:
+        region: "{{ aws_region }}"
+        engine: "{{ db_engine }}"
+        db_instance_identifier: "{{ db_instance_identifier }}"
+        db_instance_class: "{{ db_instance_class }}"
+        username: "{{ db_username }}"
+        password: "{{ db_password }}"
+        db_name: "{{ db_name }}"
+        allocated_storage: 20
+        vpc_security_group_ids: 
+          - "{{ db_sg.group_id }}"
+        publicly_accessible: false
+        wait: yes
+      register: rds_instance
+
+    - name: Output RDS Endpoint
+      debug:
+        msg: "RDS Endpoint: {{ rds_instance.endpoint }}"
+
