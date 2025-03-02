@@ -1,7 +1,7 @@
 aws_region: ap-south-1
 ec2_instance_type: t2.micro
-ec2_ami_id: ami-0aac1014bc0a90e1a  # Ubuntu 20.04 LTS (update if needed)
-vpc_id: vpc-08c35951c010e0f01  # Replace with your VPC ID
+ec2_ami_id: ami-0aac1014bc0a90e1a  
+vpc_id: vpc-08c35951c010e0f01  
 
 db_instance_identifier: my-app-db
   #db_engine_version: 5.6.42
