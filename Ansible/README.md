@@ -18,5 +18,5 @@ Create an RDS MySQL instance with the following specifications:
 
 
 
-NOTE : I Used t3.micro db instance instead of t2.micro bcoz of AWS RDS not provide mysql db with t2.micro latest mysql version.
+NOTE : I Used t3.micro db instance instead of t2.micro bcoz of AWS RDS not provide mysql db with t2.micro latest for mysql version.
       
