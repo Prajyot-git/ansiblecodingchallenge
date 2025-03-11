@@ -1,0 +1,39 @@
+ 1  sudo apt update
+    2  # Update system packages
+    3  sudo apt update
+    4  # Install dependencies
+    5  sudo apt install -y curl unzip
+    6  # Download the installer
+    7  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    8  # Unzip and install
+    9  unzip awscliv2.zip
+   10  sudo ./aws/install
+   11  # Verify installation
+   12  aws --version
+   13  # Clean up
+   14  rm -rf awscliv2.zip aws/
+   15  aws --version
+   16  aws configure
+   17  sudo apt-get install git -y
+   18  git clone https://github.com/Prajyot-git/ansiblecodingchallenge.git
+   19  ll
+   20  cd ansiblecodingchallenge
+   21  ll
+   22  cd Ansible
+   23  ll
+   24  ansible-playbook site.yml
+   25  ansible -version
+   26  sudo apt update
+   27  sudo apt upgrade -y
+   28  sudo apt install ansible -y
+   29  ansible --version
+   30  ansible -version
+   31  ansible --version
+   32  ansible-playbook site.yml
+   33  ll
+   34  vi teardown.yml
+   35  ansible-playbook teardown.yml
+   36  vi teardown.yml
+   37  cd ../
+   38  history
+

@@ -1,0 +1,36 @@
+- name: Destroy AWS Infrastructure
+  hosts: localhost
+  gather_facts: no
+  tasks:
+
+    - name: Terminate EC2 instances
+      amazon.aws.ec2_instance:
+        state: absent
+        region: ap-south-1  # Change this to your AWS region
+        filters:
+          "tag:Name": "web-server"  # Change this if you used different tags
+      register: ec2_termination
+
+    - name: Wait for EC2 instances to terminate
+      pause:
+        minutes: 1
+
+    - name: Delete security groups
+      amazon.aws.ec2_security_group:
+        state: absent
+        region: ap-south-1
+        name: MyWebSG  # Change this to match your security group name
+      ignore_errors: yes
+
+    - name: Delete RDS instance
+      amazon.aws.rds_instance:
+        state: absent
+        region: ap-south-1
+        db_instance_identifier: my-app-db  # Change this to your actual RDS identifier
+        skip_final_snapshot: true
+      ignore_errors: yes
+
+    - name: Confirm deletion
+      debug:
+        msg: "All AWS resources have been deleted."
+
